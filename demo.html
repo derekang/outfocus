@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+    <title>A Browser Tab Title Experiment Idea</title>
+    <!-- Bootstrap core CSS -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="resources/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+
+                <div class="col-12 text-center">
+                    <a class="blog-header-logo text-dark" href="#">MSN Demo</a>
+                </div>
+                
+            </div>
+        </header>
+
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-12 px-0">
+                <h1 class="display-6 font-italic">Experiment #Idea: Animating the browser tab title when user is out-focused</h1>
+                <p class="lead my-3">Our hypothesis is that if we animate the MSN homepage or article page title for users who are "out-focused", we can encourage them to come back and read more. We can also use this to display "Breaking News".
+                </p>
+                <p class="lead my-3">Click below to see in action!</p>
+
+                <p class="lead mb-0"><a href="https://www.bing.com" target="_blank" class="btn btn-primary btn-lg">See Live in Action</a></p>
+            </div>
+        </div>
+        
+    </div>
+  
+    <!-- /.container -->
+    <footer class="blog-footer">
+        <p>
+          <a href="#">Back to top</a>
+        </p>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function() {
+
+        var origTitle, animatedTitle, timer;
+
+        function animateTitle(newTitle) {
+            var currentState = false;
+            origTitle = document.title;
+            animatedTitle = "👋 Read more in MSN Singapore:  " + origTitle;
+            timer = setInterval(startAnimation, 2000);
+
+            function startAnimation() {
+                document.title = currentState ? origTitle : animatedTitle;
+                currentState = !currentState;
+            }
+        }
+
+        function restoreTitle() {
+            clearInterval(timer);
+            document.title = origTitle;
+        }
+
+        $(window).blur(function() {
+            animateTitle();
+        });
+
+        $(window).focus(function() {
+            restoreTitle();
+        });
+
+
+    })
+    </script>
+</body>
+
+</html>
